@@ -4,8 +4,6 @@
 
 The user enters a reflective thought; the system retrieves similar past thoughts filtered by current cycle phase, augments with physiological context (HRV, sleep) from real participant data, and elicits **two parallel Claude responses** — one grounded in that context, one context-blind. Both are presented side-by-side in **randomized order with blind reveal**, then scored on a **pre-registered rubric** (8-item binary sycophancy + 6-item graded grounded-calibration).
 
-CS 153 · Frontier Systems · Spring 2026 · Stanford · Mid-quarter milestone (2026-05-17)
-
 ---
 
 ## Table of Contents
