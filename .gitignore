@@ -41,8 +41,18 @@ yarn-error.log*
 next-env.d.ts
 
 # koor — local-only data + logs
+# (gitignore does not support inline comments — keep patterns on their own lines)
+# live demo log (may contain arbitrary user input)
 /runs.jsonl
+# raw mcPHASES (re-download from PhysioNet)
 /data/raw/
-/data/corpus_embeddings.json
+# derived embedding cache — rebuild with scripts/build-embeddings.ts
+/data/embeddings.*.json
 *.local.json
+# local README backup
+*.bak
 
+# Evaluation outputs ARE committed as evidence (NOT ignored):
+#   data/eval-runs.jsonl, data/eval-scores.jsonl, data/scores.jsonl
+
+PEER_REVIEW_AUDIT.md
