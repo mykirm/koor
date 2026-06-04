@@ -5,7 +5,12 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "test": "tsx scripts/selftest.ts",
+    "embeddings": "tsx scripts/build-embeddings.ts",
+    "eval": "tsx scripts/run-eval.ts",
+    "judge": "tsx scripts/judge-eval.ts",
+    "metrics": "python3 scripts/metrics.py"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.96.0",
@@ -20,6 +25,7 @@
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "tailwindcss": "^4",
+    "tsx": "^4.19.2",
     "typescript": "^5"
   }
 }
