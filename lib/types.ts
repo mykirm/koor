@@ -12,7 +12,6 @@ export const ThoughtEntrySchema = z.object({
   id: z.string(),
   date: z.string(),
   phase: PhaseSchema,
-  hrv_ms: z.number().optional(),
   sleep_hours: z.number().optional(),
   thought: z.string(),
   resolved_outcome: z.string(),
@@ -20,19 +19,35 @@ export const ThoughtEntrySchema = z.object({
 });
 export type ThoughtEntry = z.infer<typeof ThoughtEntrySchema>;
 
+export const ArmNameSchema = z.enum(['blind', 'naive_rag', 'koor']);
+
 export const ReflectRequestSchema = z.object({
   thought: z.string().min(1).max(2000),
   phase: PhaseSchema,
   sleep: z.number().min(0).max(10).optional(),
   energy: z.number().min(0).max(10).optional(),
+  /** Which arms to run + compare. Defaults to all three. */
+  arms: z.array(ArmNameSchema).min(1).optional(),
 });
 export type ReflectRequest = z.infer<typeof ReflectRequestSchema>;
 
 export type NoveltyBranch = 'low' | 'mid' | 'high';
 
+// The three comparison arms:
+//   blind     — context-blind baseline (no retrieval)
+//   naive_rag — the original single grounded prompt: retrieved text + state in one prompt
+//   koor      — the multi-stage pipeline (lib/pipeline)
+export type ArmName = 'blind' | 'naive_rag' | 'koor';
+
+/** Opaque panel shown to the rater — no arm label until reveal. */
+export interface Panel {
+  id: string; // 'A' | 'B' | 'C'
+  text: string;
+  error?: string;
+}
+
 export interface ReflectResponse {
-  A: { text: string; error?: string };
-  B: { text: string; error?: string };
+  panels: Panel[];
   retrieved: ThoughtEntry[];
   novelty: number;
   novelty_branch: NoveltyBranch;
@@ -40,13 +55,31 @@ export interface ReflectResponse {
   embedding_backend: string;
 }
 
+export interface ArmRecord {
+  arm: ArmName;
+  text: string;
+  model: string;
+  latency_ms: number;
+  error?: string;
+  // koor only — the intermediate pipeline artifacts
+  trace?: import('./pipeline/types').PipelineTrace;
+}
+
 export interface RunRecord {
   ts: string;
   input: ReflectRequest;
-  grounded: { text: string; model: string; latency_ms: number; novelty_branch: NoveltyBranch; error?: string };
-  baseline: { text: string; model: string; latency_ms: number; error?: string };
+  arms: ArmRecord[];
   retrieved: ThoughtEntry[];
   novelty: number;
-  reveal: { A: 'grounded' | 'baseline'; B: 'grounded' | 'baseline' };
+  /** panel id -> which arm it was */
+  reveal: Record<string, ArmName>;
   embedding_backend: string;
+}
+
+/** Returned by /api/reveal after a rater has scored — unmasks the panels. */
+export interface RevealResponse {
+  reveal: Record<string, ArmName>;
+  novelty: number;
+  novelty_branch: NoveltyBranch;
+  trace: import('./pipeline/types').PipelineTrace | null;
 }
