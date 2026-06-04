@@ -1,0 +1,40 @@
+flowchart TD
+  subgraph CLIENT["browser — never sees arm labels"]
+    FORM["thought · phase · sleep · energy"]
+    PANELS["opaque panels A · B · C"]
+    REVEAL["reveal — only after scoring"]
+  end
+
+  subgraph SERVER["next.js server"]
+    REFLECT["/api/reflect"]
+    RETR["retrieve top-k same-phase thoughts<br/>voyage embeddings + disk cache"]
+    subgraph ARMS["three arms — single-prompt and koor get identical context"]
+      BLIND["context-blind<br/>thought only"]
+      NAIVE["single-prompt<br/>context dumped into one prompt"]
+      subgraph PIPE["koor pipeline"]
+        direction TB
+        P1["1 · pattern<br/>counts outcomes in the history"]
+        P2["2 · critique<br/>signal vs state · safety flags"]
+        P3["3 · compose<br/>cites the user's own numbers"]
+        P4["4 · guardrail<br/>no diagnosing · no forced patterns"]
+        P1 --> P2 --> P3 --> P4
+      end
+    end
+    SHUF["shuffle arms into panels<br/>mapping stays server-side"]
+    REVAPI["/api/reveal<br/>mapping + pipeline trace"]
+  end
+
+  LOG[("runs.jsonl<br/>every arm · trace · mapping")]
+
+  FORM --> REFLECT
+  REFLECT --> BLIND
+  REFLECT --> RETR
+  RETR --> NAIVE
+  RETR --> P1
+  BLIND --> SHUF
+  NAIVE --> SHUF
+  P4 --> SHUF
+  SHUF --> PANELS
+  SHUF --> LOG
+  REVEAL --> REVAPI
+  REVAPI --> LOG

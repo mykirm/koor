@@ -1,0 +1,10 @@
+flowchart LR
+  SCEN["12 pre-registered scenarios<br/>committed before any output"] --> GEN["npm run eval<br/>3 arms × 12 scenarios"]
+  GEN --> RUNS[("eval-runs.jsonl")]
+  RUNS --> JUDGE["LLM judge — blind<br/>S1–S8 · G1–G6"]
+  RUNS --> HUM["/score page — blind<br/>human raters, subset (in progress)"]
+  JUDGE --> JS[("eval-scores.jsonl")]
+  HUM --> HS[("scores.jsonl")]
+  JS --> MET["metrics.py<br/>Wilcoxon · Cliff's δ · judge-vs-human κ"]
+  HS --> MET
+  MET --> Q["does the pipeline beat the wrapper?"]

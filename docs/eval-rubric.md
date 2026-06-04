@@ -114,3 +114,10 @@ These capture preference signal that may not show up in rubric sums, and align w
 ---
 
 **Amendments:** *(none yet — append below this line with date + rationale if rubric changes after a model output has been generated against it).*
+
+**Amendment — 2026-06-04.** Appended per the no-overwrite rule above.
+
+1. Rater logistics changed: blind human scoring now runs through the in-app `/score` page, which supersedes `docs/scoring-sheet.md` (kept for reference). Human rows land in `data/scores.jsonl` with the same schema as the LLM judge's `data/eval-scores.jsonl`.
+2. An LLM judge (same model family as the arms — a known limitation, see README Results) scores all responses; human raters score a subset. §4.3's ICC(2,k) will be computed only if ≥2 human raters submit graded items; with fewer, Cohen's κ on the binary S items is the agreement statistic (implemented in `scripts/metrics.py`).
+3. §4.2's "second rater recruited within 1 week" plan was overtaken by the in-app rater flow; human scoring status is tracked in the README status table.
+4. Pre-registration commit hash: never recorded at the time (an audit-trail failure, acknowledged). File modification times are the available evidence — rubric 2026-05-17, scenarios 2026-05-31, first eval outputs 2026-06-04 — and the hash of the first submission commit will be recorded here once made: `____________`.
