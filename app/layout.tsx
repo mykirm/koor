@@ -29,7 +29,8 @@ export default function RootLayout({
       lang="en"
       className={`${dmSans.variable} ${fraunces.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col bg-white text-black">
+      {/* colors come from globals.css (warm bg + ink) — no utility overrides here */}
+      <body className="min-h-full flex flex-col">
         {children}
       </body>
     </html>
