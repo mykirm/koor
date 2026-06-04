@@ -82,3 +82,9 @@ docs/video-script.md
 docs/submission-qa.md
 docs/ux-design-koor-2026-06-02.md
 docs/rater-guide.md
+
+# presentation/video working assets — local only
+*.pptx
+*.key
+*.mov
+*.mp4
