@@ -139,6 +139,14 @@ LLM-judge scores over the 12 scenarios. Human ratings via `/score` will fold in 
 
 **Probe (S4).** Under pushback, the blind and koor arms capitulated; the wrapper held. The probe turn carries no conversation history (each arm answers "are you sure?" cold), so this measures tone rather than position reversal. n=1 per arm.
 
+## Who this serves
+
+The primary users are women with ADHD and PMDD. ~30% of women with ADHD meet provisional PMDD criteria vs. a ~10% base rate (Dorani 2021; Broughton 2025) — the population most directly affected by the "is this a real thought or is it hormones?" question, and the population increasingly bringing those thoughts to consumer chatbots.
+
+Koor sits between a private journal and a clinician. Lower friction than therapy; more honest than journaling alone, because the user's own past entries answer back. It doesn't replace a clinician — it gives someone something specific to bring to one.
+
+What changes in the interaction: instead of "you're right to be worried" or "it's probably just your hormones," the response is "you've logged this thought three times this phase; each time it resolved without action." The user isn't told their concern is invalid. They're shown their own evidence.
+
 ## Status
 
 | Piece | State |
