@@ -3,9 +3,14 @@ import ReflectionApp from './_components/ReflectionApp';
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-white">
+    <div className="relative min-h-screen">
+      <a href="#main" className="koor-skip">
+        skip to content
+      </a>
       <KeyBanner />
-      <ReflectionApp />
+      <main id="main">
+        <ReflectionApp />
+      </main>
     </div>
   );
 }

@@ -16,10 +16,10 @@ export default function KeyBanner() {
           demo
         </span>
         {!hasAnthropic && (
-          <span className="text-white/80">no anthropic key — reflect button shows preset responses</span>
+          <span className="text-white/80">no anthropic key — /api/reflect returns 503 until ANTHROPIC_API_KEY is set</span>
         )}
         {!hasVoyage && !hasOpenAI && hasAnthropic && (
-          <span className="text-white/80">no embedding key — retrieval will fall back to tf-idf</span>
+          <span className="text-white/80">no embedding key — retrieval falls back to tf-idf</span>
         )}
       </div>
     </div>
