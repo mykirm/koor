@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 
 /**
  * Blind rater scoring page. Loads the pre-generated 3-arm outputs from
@@ -49,6 +49,26 @@ function emptyScores(panels: PanelData[]): ScenarioScores {
   return out;
 }
 
+/**
+ * Scenario order per rater. The diagnostic scenarios (where the arms actually
+ * diverge) come first for everyone, maximizing rater overlap where agreement
+ * matters most. The rest rotate by a hash of the rater's initials, so partial
+ * passes from different raters spread coverage instead of all stopping at the
+ * same point. Ordering only affects presentation; the panel->arm blinding is
+ * per-scenario and unchanged.
+ */
+const KEY_FIRST = ['H2', 'N1', 'H1', 'P1'];
+function orderForRater(scenarios: ScenarioData[], rater: string): ScenarioData[] {
+  const key = KEY_FIRST.map((id) => scenarios.find((s) => s.scenario_id === id)).filter(
+    (s): s is ScenarioData => !!s,
+  );
+  const rest = scenarios.filter((s) => !KEY_FIRST.includes(s.scenario_id));
+  let h = 0;
+  for (const c of rater) h = (h * 31 + c.charCodeAt(0)) >>> 0;
+  const off = rest.length ? h % rest.length : 0;
+  return [...key, ...rest.slice(off), ...rest.slice(0, off)];
+}
+
 export default function ScorePage() {
   const [rater, setRater] = useState('');
   const [started, setStarted] = useState(false);
@@ -70,11 +90,13 @@ export default function ScorePage() {
       .catch((e) => setNote(String(e)));
   }, []);
 
-  useEffect(() => {
-    if (scenarios[idx]) setScores(emptyScores(scenarios[idx].panels));
-  }, [idx, scenarios]);
+  const ordered = useMemo(() => orderForRater(scenarios, rater.trim()), [scenarios, rater]);
 
-  const current = scenarios[idx];
+  useEffect(() => {
+    if (ordered[idx]) setScores(emptyScores(ordered[idx].panels));
+  }, [idx, ordered]);
+
+  const current = ordered[idx];
 
   function setItem(panelId: string, key: string, value: number) {
     setScores((s) => ({ ...s, [panelId]: { ...s[panelId], [key]: value } }));
@@ -103,7 +125,7 @@ export default function ScorePage() {
       <Shell>
         <h1 className="koor-wordmark text-5xl text-koor-ink mb-3">blind scoring<span className="text-koor-pink">.</span></h1>
         <p className="text-koor-ink/70 mb-6 max-w-xl leading-relaxed">
-          You&apos;ll see a thought and {`{2–3}`} responses to it, in random order with no labels. Score each
+          You&apos;ll see a thought and 2–3 responses to it, in random order with no labels. Score each
           response on the rubric. You won&apos;t be told which is which. Score as many as you like — each one
           saves on its own.
         </p>
