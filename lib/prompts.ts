@@ -14,7 +14,6 @@ const SCIENCE_GUARDRAIL = `Note: menstrual cycle phase modulates affect, not cog
 interface GroundedPayload {
   thought: string;
   phase: Phase;
-  hrv_ms?: number;
   sleep_hours?: number;
   energy?: number;
   retrieved: ThoughtEntry[];
@@ -35,16 +34,20 @@ function formatRetrieved(retrieved: ThoughtEntry[]): string {
 export function buildGroundedSystemPrompt({
   thought,
   phase,
-  hrv_ms,
   sleep_hours,
   energy,
   retrieved,
   novelty,
 }: GroundedPayload): string {
   const branch = noveltyBranch(novelty);
+  // Grounding context is phase + sleep + retrieved past thoughts. HRV was
+  // dropped: the subject has no HRV device, and a top-k sensitivity check on
+  // matched-donor HRV (see scripts/match-participant.ts, data/hrv-donor-analysis.md)
+  // showed the borrowed value was donor-trait-dominated, not phase-driven.
+  // Sleep as an affect prior is supported directly (Yoo et al. 2007, amygdala
+  // reactivity after sleep loss); phase is reported by the user, not inferred.
   const ctx = `Context:
 - Cycle phase: ${phase}
-- HRV today: ${hrv_ms != null ? `${hrv_ms} ms` : 'unknown'}
 - Sleep last night: ${sleep_hours != null ? `${sleep_hours} hrs` : 'unknown'}
 - Self-reported energy: ${energy != null ? `${energy}/10` : 'unknown'}
 - 2-3 past thoughts from the same cycle phase:

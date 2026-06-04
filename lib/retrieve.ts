@@ -1,9 +1,18 @@
 import type { Phase, ThoughtEntry } from './types';
-import { RETRIEVE_K } from './constants';
+import { RETRIEVE_K, VOYAGE_MODEL, OPENAI_EMBED_MODEL } from './constants';
 import { loadCorpus } from './loadCorpus';
 import { hasVoyageKey, voyageEmbed } from './embedders/voyage';
 import { hasOpenAIKey, openaiEmbed } from './embedders/openai';
 import { TfIdf } from './embedders/tfidf';
+import { cachedEmbed } from './embedders/cache';
+
+// Route API embeddings through the disk cache so the fixed corpus + scenarios
+// aren't re-embedded on every cold start, and so retrieval still works where
+// the embedding API isn't reachable (see lib/embedders/cache.ts).
+function embedWithCache(backend: EmbeddingBackend, texts: string[]): Promise<number[][]> {
+  if (backend === 'voyage-3.5-lite') return cachedEmbed(texts, VOYAGE_MODEL, voyageEmbed);
+  return cachedEmbed(texts, OPENAI_EMBED_MODEL, openaiEmbed);
+}
 
 export type EmbeddingBackend = 'voyage-3.5-lite' | 'openai-text-embedding-3-small' | 'tfidf';
 
@@ -42,8 +51,7 @@ async function buildCorpusCache(): Promise<CorpusCache> {
     return { backend, tfidf, entries };
   }
 
-  const vectors =
-    backend === 'voyage-3.5-lite' ? await voyageEmbed(texts) : await openaiEmbed(texts);
+  const vectors = await embedWithCache(backend, texts);
   return { backend, vectors, entries };
 }
 
@@ -53,10 +61,8 @@ async function ensureCache(): Promise<CorpusCache> {
 }
 
 async function embedQuery(cache: CorpusCache, query: string): Promise<number[]> {
-  if (cache.backend === 'voyage-3.5-lite') return (await voyageEmbed([query]))[0];
-  if (cache.backend === 'openai-text-embedding-3-small') return (await openaiEmbed([query]))[0];
-  // tfidf
-  return cache.tfidf!.transform(query);
+  if (cache.backend === 'tfidf') return cache.tfidf!.transform(query);
+  return (await embedWithCache(cache.backend, [query]))[0];
 }
 
 function dot(a: number[], b: number[]): number {
