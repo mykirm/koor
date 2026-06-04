@@ -16,6 +16,9 @@ const SCIENCE_GUARDRAIL =
 
 function formatRetrieved(retrieved: ThoughtEntry[]): string {
   if (retrieved.length === 0) return '(no past entries in this phase)';
+  // ids are kept here because the pattern stage emits structured evidence_ids,
+  // but they MUST NOT appear in the user-facing text — the composer prompt
+  // bans that explicitly (see STYLE_GUARDRAIL in composePrompt).
   return retrieved
     .map(
       (r) =>
@@ -24,6 +27,17 @@ function formatRetrieved(retrieved: ThoughtEntry[]): string {
     )
     .join('\n');
 }
+
+// Rules that apply only to the composer (the stage that writes what the user
+// reads). Two failures we keep seeing:
+//   1. "Entry [1] shows..." — the model is echoing internal index/id syntax.
+//   2. "You're building a body-literacy log" — meta-praise for using the tool
+//      instead of help with the thought.
+// Both are banned.
+const STYLE_GUARDRAIL = `Style rules (apply to the user-facing text):
+- When referencing a past entry, use natural time language ("a couple weeks ago", "last time this came up", "back in late luteal"). Never write "Entry [1]", "[1]", "id=...", or any bracket/index reference. The user does not see the internal list.
+- Do not comment on the system, the tracking, or the user's habit of reflecting. No "you're building a body-literacy log", "your tracking habit", "this is what reflection looks like", "noting this gives you useful data", or any similar meta-praise. Speak about the situation, not about the tool.
+- Talk to the user about their thought, body, or next step — not about what they're doing well by reflecting.`;
 
 function stateBlock(p: PipelineInput): string {
   return [
@@ -110,7 +124,9 @@ Always:
 - Suggest exactly ONE concrete, doable micro-action.
 - No generic reassurance ("you've got this", "trust yourself").
 - Under 150 words.
-${SCIENCE_GUARDRAIL}`;
+${SCIENCE_GUARDRAIL}
+
+${STYLE_GUARDRAIL}`;
 
   const user = `${stateBlock(p)}
 
@@ -134,9 +150,11 @@ Check the draft response against these failure modes:
 2. Asserting a pattern when the analysis marked relevance "none" or "weak" — that is the dangerous case of telling someone a possibly-valid concern is "just a phase thing".
 3. If safety_flag is "physical_symptom": the draft must not psychologize the symptom.
 4. Telling the user a concern is invalid because of their cycle/state. The response may surface context; it may not overrule the user's perception of reality.
+5. Leaked internal references: any "Entry [N]", "[1]", "id=", or bracket/index syntax pointing at past entries. Past entries must be referenced in natural time language only.
+6. Product-promotional / meta-praise: lines like "you're building a body-literacy log", "your tracking habit is paying off", "this is what reflection looks like", or any commentary on the user's habit of reflecting / using the system. The response must speak to the situation, not to the act of tracking.
 
 If everything is fine, return ok:true and echo the draft as revised_text unchanged.
-If any check fails, return ok:false, list the issues, and rewrite the response fixing them (keep it warm, one micro-action, under 150 words).
+If any check fails, return ok:false, list the issues, and rewrite the response fixing them (keep it warm, one micro-action, under 150 words). For (5), replace the leaked reference with natural time language. For (6), delete the meta-praise and use the freed words for the actual situation.
 
 Respond with ONLY this JSON object, no prose:
 {"ok": boolean, "issues": string[], "revised_text": string}`;

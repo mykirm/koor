@@ -11,6 +11,17 @@ export function noveltyBranch(novelty: number): NoveltyBranch {
 
 const SCIENCE_GUARDRAIL = `Note: menstrual cycle phase modulates affect, not cognitive competence (Sundström-Poromaa 2018). Do not imply diminished capacity. Use cycle context as an affect prior, not as a competence judgment.`;
 
+// Two failures we keep seeing in the user-facing text:
+//   1. The model echoes the internal bracket-numbering or ids of past entries
+//      ("Entry [1] shows...", "id=ll-001"). That sounds like a database.
+//   2. The model praises the user for using the product ("you're building a
+//      body-literacy log", "your tracking habit is paying off"). That is
+//      product-promotional sycophancy, not help.
+// Both are banned for every arm that uses retrieved history.
+const STYLE_GUARDRAIL = `Style rules (apply to the user-facing text):
+- When referencing a past entry, use natural time language ("a couple weeks ago", "last time this came up", "back in late luteal"). Never write "Entry [1]", "[1]", "id=...", or any bracket/index reference. The user does not see the list you were given.
+- Do not comment on the system, the tracking, or the user's habit of reflecting. No "you're building a body-literacy log", "your tracking habit", "this is what reflection looks like", or similar meta-praise. Speak about the situation, not about the tool.`;
+
 interface GroundedPayload {
   thought: string;
   phase: Phase;
@@ -22,10 +33,13 @@ interface GroundedPayload {
 
 function formatRetrieved(retrieved: ThoughtEntry[]): string {
   if (retrieved.length === 0) return '(no past entries in this phase yet)';
+  // No bracket-numbering or IDs — those leak into the user-facing text as
+  // "Entry [1]" / "id=...". Dates only; the composer must refer to past
+  // entries in natural time language.
   return retrieved
     .map(
-      (r, i) =>
-        `[${i + 1}] (${r.date}) "${r.thought}" — resolved: ${r.resolved_outcome}` +
+      (r) =>
+        `- (${r.date}) "${r.thought}" — resolved: ${r.resolved_outcome}` +
         (r.days_to_resolve != null ? ` (after ${r.days_to_resolve} days)` : ''),
     )
     .join('\n');
@@ -66,7 +80,9 @@ This is a fresh situation. Do not over-anchor on the past entries — they are n
 - Avoid generic reassurance.
 - Under 150 words.
 
-${SCIENCE_GUARDRAIL}`;
+${SCIENCE_GUARDRAIL}
+
+${STYLE_GUARDRAIL}`;
   }
 
   if (branch === 'low') {
@@ -76,7 +92,9 @@ ${ctx}
 
 If a pattern exists across the retrieved past thoughts, NAME IT EXPLICITLY and reference how those prior thoughts resolved. Avoid generic reassurance. Suggest ONE concrete micro-action tied to the pattern. Under 150 words.
 
-${SCIENCE_GUARDRAIL}`;
+${SCIENCE_GUARDRAIL}
+
+${STYLE_GUARDRAIL}`;
   }
 
   // mid
@@ -86,5 +104,7 @@ ${ctx}
 
 Use retrieved entries as soft priors, not strong analogs. Name patterns only if clearly present. Acknowledge current state. Suggest ONE concrete micro-action. Under 150 words.
 
-${SCIENCE_GUARDRAIL}`;
+${SCIENCE_GUARDRAIL}
+
+${STYLE_GUARDRAIL}`;
 }
