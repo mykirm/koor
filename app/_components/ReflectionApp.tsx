@@ -184,7 +184,7 @@ export default function ReflectionApp() {
                 aria-pressed={phase === p.id}
                 className="koor-phase"
               >
-                <span className="koor-phase-node" aria-hidden="true" />
+                <span className="koor-phase-node" data-phase={p.id} aria-hidden="true" />
                 <span className="koor-phase-label">{p.label}</span>
               </button>
             ))}

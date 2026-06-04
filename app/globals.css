@@ -31,7 +31,12 @@ html {
 
 body {
   font-family: var(--font-sans), system-ui, sans-serif;
-  background-color: var(--koor-bg);
+  /* warm neutral base with one quiet blush wash, top-right — present, not loud */
+  background:
+    radial-gradient(1100px 700px at 88% -8%, #fbe9f2 0%, transparent 62%),
+    radial-gradient(900px 600px at -10% 105%, #f9eef3 0%, transparent 55%),
+    var(--koor-bg);
+  background-attachment: fixed;
   color: var(--koor-ink);
 }
 
@@ -65,10 +70,14 @@ body {
   outline-offset: 2px;
 }
 
-/* ── Surfaces — neutral shadow, no pink glow ────────────────────────────── */
+/* ── Surfaces — soft elevation, hairline edge ───────────────────────────── */
 .koor-card {
   background: var(--koor-surface);
-  box-shadow: 0 1px 2px rgba(26, 20, 23, 0.04), 0 10px 30px -22px rgba(26, 20, 23, 0.35);
+  border: 1px solid rgba(26, 20, 23, 0.07);
+  box-shadow:
+    0 1px 2px rgba(26, 20, 23, 0.04),
+    0 16px 40px -24px rgba(176, 24, 87, 0.18),
+    0 10px 30px -22px rgba(26, 20, 23, 0.3);
 }
 
 /* ── Cycle-phase track (moon-phase nodes) ───────────────────────────────── */
@@ -107,8 +116,8 @@ body {
   transform: translateY(-1px);
 }
 .koor-phase-node {
-  width: 36px;
-  height: 36px;
+  width: 38px;
+  height: 38px;
   border-radius: 50%;
   border: 2px solid var(--koor-pink-soft);
   background: #fff;
@@ -116,11 +125,35 @@ body {
   overflow: hidden;
   transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease, background 0.2s ease;
 }
+/* moon-phase fills — each node reads as its phase */
+.koor-phase-node[data-phase="menstrual"] {
+  background: radial-gradient(circle at 50% 50%, #fff 0 45%, var(--koor-pink-soft) 46% 100%);
+}
+.koor-phase-node[data-phase="follicular"]::after,
+.koor-phase-node[data-phase="late_luteal"]::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--koor-pink-soft);
+}
+.koor-phase-node[data-phase="follicular"]::after {
+  clip-path: inset(0 0 0 50%);
+}
+.koor-phase-node[data-phase="late_luteal"]::after {
+  clip-path: inset(0 50% 0 0);
+}
+.koor-phase-node[data-phase="ovulatory"] {
+  background: radial-gradient(circle at 50% 45%, var(--koor-pink) 0%, var(--koor-pink-soft) 100%);
+}
 .koor-phase[aria-pressed="true"] .koor-phase-node {
   border-color: var(--koor-pink);
   background: var(--koor-pink);
-  transform: scale(1.08);
-  box-shadow: 0 0 0 3px rgba(226, 59, 125, 0.16);
+  transform: scale(1.1);
+  box-shadow: 0 0 0 4px rgba(226, 59, 125, 0.16);
+}
+/* keep the moon shape readable (white) when selected */
+.koor-phase[aria-pressed="true"] .koor-phase-node::after {
+  background: rgba(255, 255, 255, 0.92);
 }
 .koor-phase-label {
   font-size: 0.72rem;
