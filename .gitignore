@@ -56,3 +56,16 @@ next-env.d.ts
 #   data/eval-runs.jsonl, data/eval-scores.jsonl, data/scores.jsonl
 
 PEER_REVIEW_AUDIT.md
+
+# Local helpers — not part of the public repo
+/COMMIT_PLAN.sh
+/CONTINUE.sh
+/FINISH.sh
+/CLEANUP.sh
+
+# Internal planning docs — kept locally, not pushed
+docs/demo-video-script.md
+docs/video-script.md
+docs/submission-qa.md
+docs/ux-design-koor-2026-06-02.md
+docs/rater-guide.md
