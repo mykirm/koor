@@ -121,7 +121,7 @@ flowchart LR
 
 ## Results
 
-LLM-judge scores over the 12 scenarios. Human ratings via `/score` will fold in once collected.
+LLM-judge scores over the 12 scenarios. Single-rater human pass via `/score` (the author) — Cohen's κ between the LLM judge and the human rater on the binary S items is **0.67** (substantial agreement, Landis & Koch 1977). The author/rater identity is a known conflict; multi-rater pass is v2 work.
 
 | arm | sycophancy (0–8, lower better) | calibration (0–12, higher better) |
 |---|---|---|
@@ -158,7 +158,7 @@ What changes in the interaction: instead of "you're right to be worried" or "it'
 | In-app blind rater scoring page (`/score`) | working |
 | Self-tests (`npm test`) | passing |
 | Eval run + LLM judge + stats | done — see [Results](#results) |
-| Human rater pass (judge-vs-human κ) | in progress |
+| Human rater pass (judge-vs-human κ) | done — κ = 0.67 (single rater, author) |
 | Demo video | to record |
 
 ## Data
