@@ -46,6 +46,10 @@ next-env.d.ts
 /runs.jsonl
 # raw mcPHASES (re-download from PhysioNet)
 /data/raw/
+# mcPHASES per-row provenance — participant linkage (PhysioNet Restricted DUA 1.5.0): local audit trail only, never committed
+/data/mcphases_provenance.md
+# locally-seeded corpus overlay (physiological tuples regenerated from raw mcPHASES) — never committed
+/data/thoughts.seeded.json
 # derived embedding cache — rebuild with scripts/build-embeddings.ts
 /data/embeddings.*.json
 *.local.json
