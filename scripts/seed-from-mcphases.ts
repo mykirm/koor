@@ -1,23 +1,28 @@
 /**
- * Seed real mcPHASES (HRV, sleep, phase) tuples into data/thoughts.json.
+ * Seed real mcPHASES (HRV, sleep, phase) tuples into a LOCAL, gitignored overlay.
  *
- * Wires three mcPHASES v1.0.0 tables (Lin et al. 2025, PhysioNet Restricted
- * Health Data License 1.5.0) into thoughts.json. Joins on (id, day_in_study)
- * across:
+ * mcPHASES v1.0.0 (Lin et al. 2025) is a restricted-access PhysioNet dataset
+ * under the PhysioNet Restricted Health Data License/DUA 1.5.0, which prohibits
+ * redistributing the data. So this script does NOT write physiological values
+ * into the committed corpus (data/thoughts.json — narrative + phase only).
+ * Instead it reads that committed corpus, pairs each entry to a real
+ * participant-day, and writes the seeded result to data/thoughts.seeded.json,
+ * which is gitignored. loadCorpus() prefers that overlay when present, so the
+ * app runs with real physiology locally while the repo ships only the method.
+ *
+ * Joins three mcPHASES tables on (id, day_in_study):
  *   - hormones_and_selfreport.csv: phase label
  *   - sleep.csv (mainsleep=='True'): minutesasleep → sleep_hours
  *   - heart_rate_variability_details.csv: 5-min rmssd → mean per night
  *
- * For each entry in thoughts.json, picks a real participant-day where the
- * cycle phase matches and overwrites hrv_ms + sleep_hours. Emits
- * data/mcphases_provenance.md with the per-row (thought.id, id, day) mapping
- * — that file is gitignored under the PhysioNet DUA; it's the local audit
- * trail, not a public artifact.
+ * Also emits data/mcphases_provenance.md (per-row thought.id → participant_id,
+ * day_in_study mapping) — likewise gitignored under the DUA; it's the local
+ * audit trail, not a public artifact.
  *
  * Deterministic: SHA-256(thought.id || MCPHASES_SEED) mod pool size.
  * Idempotent: same inputs → same picks.
  *
- * Usage:
+ * Usage (requires your own credentialed mcPHASES download in data/raw/mcphases/):
  *   npx tsx scripts/seed-from-mcphases.ts
  */
 
@@ -50,6 +55,8 @@ interface ParticipantDay {
 const REPO_ROOT = path.resolve(__dirname, '..');
 const RAW_DIR = path.join(REPO_ROOT, 'data', 'raw', 'mcphases');
 const THOUGHTS_PATH = path.join(REPO_ROOT, 'data', 'thoughts.json');
+// Seeded output is a gitignored local overlay — never the committed corpus.
+const SEEDED_PATH = path.join(REPO_ROOT, 'data', 'thoughts.seeded.json');
 const PROVENANCE_PATH = path.join(REPO_ROOT, 'data', 'mcphases_provenance.md');
 
 // -------- mcPHASES loading --------
@@ -266,7 +273,8 @@ async function main() {
     });
   }
 
-  await fs.writeFile(THOUGHTS_PATH, JSON.stringify(thoughts, null, 2) + '\n', 'utf8');
+  // Write the seeded corpus to the gitignored overlay, NOT the committed source.
+  await fs.writeFile(SEEDED_PATH, JSON.stringify(thoughts, null, 2) + '\n', 'utf8');
 
   const md = [
     '# mcPHASES — per-row provenance',
@@ -303,7 +311,8 @@ async function main() {
   await fs.writeFile(PROVENANCE_PATH, md + '\n', 'utf8');
 
   console.log(
-    `[koor] seeded ${thoughts.length} entries; provenance written to ${PROVENANCE_PATH}`,
+    `[koor] seeded ${thoughts.length} entries -> ${SEEDED_PATH} (gitignored overlay); ` +
+      `provenance written to ${PROVENANCE_PATH}`,
   );
 }
 

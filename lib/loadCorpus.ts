@@ -9,7 +9,19 @@ let cached: ThoughtEntry[] | null = null;
 
 export async function loadCorpus(): Promise<ThoughtEntry[]> {
   if (cached) return cached;
-  const filePath = path.join(process.cwd(), 'data', 'thoughts.json');
+  // Prefer the locally-seeded overlay (real mcPHASES physiology, gitignored under
+  // the PhysioNet Restricted DUA) when present; otherwise fall back to the
+  // committed corpus, which carries narrative + phase only (sleep shows as
+  // "unknown" until a credentialed user runs scripts/seed-from-mcphases.ts).
+  const seededPath = path.join(process.cwd(), 'data', 'thoughts.seeded.json');
+  const committedPath = path.join(process.cwd(), 'data', 'thoughts.json');
+  let filePath = committedPath;
+  try {
+    await fs.access(seededPath);
+    filePath = seededPath;
+  } catch {
+    // no overlay — use the committed corpus
+  }
   const raw = await fs.readFile(filePath, 'utf8');
   const json = JSON.parse(raw) as unknown;
   const parsed = CorpusSchema.safeParse(json);
