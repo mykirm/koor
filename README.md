@@ -163,7 +163,11 @@ What changes in the interaction: instead of "you're right to be worried" or "it'
 
 ## Data
 
-Physiological tuples (`hrv_ms`, `sleep_hours`, `phase`) are paired from the mcPHASES dataset (Lin et al. 2025, PhysioNet, ODC-BY) to a single participant (id 22). The per-row mapping to participant and study day is in [data/mcphases_provenance.md](data/mcphases_provenance.md). Thought text and resolved outcomes are author-written, not drawn from the dataset. The raw dataset is not committed; re-download from PhysioNet and verify tuples against the provenance table to reproduce.
+The committed corpus ([data/thoughts.json](data/thoughts.json)) holds author-written thoughts, resolved outcomes, cycle phase, and dates **only** — no dataset values. Physiological context (`sleep_hours`; HRV is dropped at runtime, see [data/hrv-donor-analysis.md](data/hrv-donor-analysis.md)) is paired per-row from the **mcPHASES** dataset (Lin et al. 2025, PhysioNet) to a single participant (id 22), but is **not committed**: it is regenerated locally into a gitignored overlay (`data/thoughts.seeded.json`) by [`scripts/seed-from-mcphases.ts`](scripts/seed-from-mcphases.ts). Without that overlay the app runs with sleep shown as "unknown".
+
+### Data access & compliance
+
+mcPHASES is a *restricted-access* PhysioNet dataset, not an open download. Obtaining it required a credentialed PhysioNet account, completion of CITI human-subjects data training, and execution of the **PhysioNet Restricted Health Data Use Agreement v1.5.0**. In accordance with that DUA, no participant-level data is redistributed in this repository — physiological values are regenerated locally from your own mcPHASES download (`data/raw/mcphases/`, gitignored) via `scripts/seed-from-mcphases.ts`, and reviewers reproduce results under their own credential.
 
 ## Setup
 
@@ -200,4 +204,4 @@ Full annotated list with effect sizes in [docs/science-basis.md](docs/science-ba
 - Chiang et al. 2024 — Chatbot Arena (server-side blinding). arXiv:2403.04132
 - Sundström-Poromaa 2018 — cycle affects emotion, not cognition. PMID 29544637
 - Schmalenberger et al. 2020 — vagally-mediated HRV across the cycle. PMC7141121
-- Lin et al. 2025 — mcPHASES dataset. PhysioNet (ODC-BY)
+- Lin et al. 2025 — mcPHASES dataset. PhysioNet, Restricted Health Data License 1.5.0

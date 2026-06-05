@@ -255,9 +255,9 @@ koor/
 │   ├── prompts.ts                # SYSTEM_BASELINE + grounded branches
 │   └── log.ts                    # JSONL writer with VERCEL branch
 ├── data/
-│   ├── thoughts.json             # seeded 20 entries (post-tonight)
-│   ├── mcphases_note.md          # ODC-BY attribution
-│   ├── mcphases_provenance.md    # per-row mapping (post-tonight)
+│   ├── thoughts.json             # corpus: narrative + phase only (no dataset values)
+│   ├── mcphases_note.md          # Restricted Health Data License 1.5.0 disclosure
+│   ├── mcphases_provenance.md    # per-row mapping — GITIGNORED (DUA audit trail)
 │   ├── runs.sample.jsonl         # 4-5 curated entries (post-tonight)
 │   └── raw/                      # gitignored — local mcPHASES copy
 ├── docs -> ../docs               # symlink to /Users/myrakirmani/Desktop/cs153/docs (or copy)

@@ -279,7 +279,7 @@ The v1 → v2 path is **substitution at named seams**, not rewrites.
 | ADR-05 | JSONL append via `fs.appendFile` awaited; branch on `VERCEL` | Accepted | Atomicity + Vercel FS constraint | Tech spec §4 |
 | ADR-06 | Novelty score branches grounded prompt (low/mid/high) | Accepted | Was metadata-only in original brief — needed a behavioral hook | PRD gap #1 |
 | ADR-07 | Pre-registered rubric committed before any output generated | Accepted | Stanford-level scrutiny demands non-cherry-picked eval | PRD gap #4 |
-| ADR-08 | mcPHASES raw stays out of repo; only paired tuples + provenance committed | Accepted | ODC-BY-compliant minimalism; bandwidth + license-norm respect | PRD §10 |
+| ADR-08 | No mcPHASES participant-level data in repo; values + provenance regenerated locally from the user's own credentialed download | Accepted | PhysioNet Restricted Health Data DUA 1.5.0 prohibits redistribution | PRD §10 |
 | ADR-09 | Skip `/bmad:architecture` formal workflow (this doc is the architecture) | Accepted | Stack already constrained by brief; tech-spec + this doc cover the needed shape | Plan §"BMAD Sequence" |
 | ADR-10 | Reflection-not-therapy framing in README + UI footer | Accepted | Stanford HAI 2025 risk literature | Science basis §6 |
 

@@ -4,9 +4,9 @@ Physiological values (`hrv_ms`, `sleep_hours`) and cycle phase labels paired int
 
 **Lin, B., Li, J. Y., Kalani, K., Truong, K., & Mariakakis, A. (2025).** *mcPHASES: A Dataset of Physiological, Hormonal, and Self-reported Events and Symptoms for Menstrual Health Tracking with Wearables* (v1.0.0). PhysioNet. https://physionet.org/content/mcphases/1.0.0/
 
-**License:** Open Data Commons Attribution License v1.0 (ODC-BY). Free use including commercial use, with attribution required. License text: https://physionet.org/about/licenses/open-data-commons-attribution-license-v10/
+**License / access:** PhysioNet Restricted Health Data License 1.5.0 (**Restricted Access**). Access requires a credentialed PhysioNet account, CITI human-subjects training, and a signed PhysioNet Restricted Health Data Use Agreement v1.5.0. **Redistribution of the data is not permitted** — the DUA prohibits sharing access. License/access page: https://physionet.org/content/mcphases/1.0.0/
 
-**What is from mcPHASES:** Numeric tuples `(hrv_ms, sleep_hours, phase)` paired per-row into `thoughts.json`. Each row's source participant + study day is documented in `mcphases_provenance.md`.
+**What is from mcPHASES:** Numeric `(sleep_hours, phase)` values paired per-row into the corpus (HRV is dropped at runtime — see `hrv-donor-analysis.md`). Under the DUA these values are **not committed**: they are regenerated locally into the gitignored overlay `thoughts.seeded.json` by `scripts/seed-from-mcphases.ts`, and each row's source participant + study day is recorded in the gitignored `mcphases_provenance.md` (the local DUA audit trail, not a public artifact).
 
 **What is NOT from mcPHASES:** Thought narrative content. All `thought` and `resolved_outcome` fields in `thoughts.json` are researcher-authored (Myra Kirmani) based on personal introspection.
 

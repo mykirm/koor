@@ -20,6 +20,9 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
-Note: this license covers the code. The mcPHASES-derived physiological values
-in data/ are from Lin et al. (2025), PhysioNet, under Open Data Commons
-Attribution v1.0 (ODC-BY); see data/mcphases_note.md.
+Note: this license covers the code. No mcPHASES participant-level data is
+included in this repository. mcPHASES (Lin et al. 2025, PhysioNet) is a
+restricted-access dataset under the PhysioNet Restricted Health Data License
+1.5.0, whose Data Use Agreement prohibits redistribution; physiological values
+are regenerated locally under the user's own PhysioNet credential. See
+data/mcphases_note.md.
