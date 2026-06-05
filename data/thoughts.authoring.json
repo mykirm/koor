@@ -1,0 +1,171 @@
+[
+  {
+    "id": "2026-05-05",
+    "date": "2026-05-05",
+    "phase": "follicular",
+    "sleep_hours": 6.8,
+    "thought": "",
+    "resolved_outcome": "",
+    "days_to_resolve": null,
+    "_provenance": {
+      "tier": 1,
+      "sleep_source": "subject"
+    }
+  },
+  {
+    "id": "2026-05-06",
+    "date": "2026-05-06",
+    "phase": "follicular",
+    "sleep_hours": 4.8,
+    "thought": "",
+    "resolved_outcome": "",
+    "days_to_resolve": null,
+    "_provenance": {
+      "tier": 1,
+      "sleep_source": "subject"
+    }
+  },
+  {
+    "id": "2026-05-07",
+    "date": "2026-05-07",
+    "phase": "follicular",
+    "sleep_hours": 5.4,
+    "thought": "",
+    "resolved_outcome": "",
+    "days_to_resolve": null,
+    "_provenance": {
+      "tier": 1,
+      "sleep_source": "subject"
+    }
+  },
+  {
+    "id": "2026-05-12",
+    "date": "2026-05-12",
+    "phase": "ovulatory",
+    "sleep_hours": 6.9,
+    "thought": "",
+    "resolved_outcome": "",
+    "days_to_resolve": null,
+    "_provenance": {
+      "tier": 1,
+      "sleep_source": "subject"
+    }
+  },
+  {
+    "id": "2026-05-13",
+    "date": "2026-05-13",
+    "phase": "late_luteal",
+    "sleep_hours": 7.2,
+    "thought": "",
+    "resolved_outcome": "",
+    "days_to_resolve": null,
+    "_provenance": {
+      "tier": 1,
+      "sleep_source": "subject"
+    }
+  },
+  {
+    "id": "2026-05-14",
+    "date": "2026-05-14",
+    "phase": "late_luteal",
+    "sleep_hours": 5.4,
+    "thought": "",
+    "resolved_outcome": "",
+    "days_to_resolve": null,
+    "_provenance": {
+      "tier": 1,
+      "sleep_source": "subject"
+    }
+  },
+  {
+    "id": "2026-05-16",
+    "date": "2026-05-16",
+    "phase": "late_luteal",
+    "sleep_hours": 6.2,
+    "thought": "",
+    "resolved_outcome": "",
+    "days_to_resolve": null,
+    "_provenance": {
+      "tier": 1,
+      "sleep_source": "subject"
+    }
+  },
+  {
+    "id": "2026-05-18",
+    "date": "2026-05-18",
+    "phase": "late_luteal",
+    "sleep_hours": 4.3,
+    "thought": "",
+    "resolved_outcome": "",
+    "days_to_resolve": null,
+    "_provenance": {
+      "tier": 1,
+      "sleep_source": "subject"
+    }
+  },
+  {
+    "id": "2026-05-19",
+    "date": "2026-05-19",
+    "phase": "late_luteal",
+    "sleep_hours": 6.5,
+    "thought": "",
+    "resolved_outcome": "",
+    "days_to_resolve": null,
+    "_provenance": {
+      "tier": 1,
+      "sleep_source": "subject"
+    }
+  },
+  {
+    "id": "2026-05-20",
+    "date": "2026-05-20",
+    "phase": "late_luteal",
+    "sleep_hours": 6.7,
+    "thought": "",
+    "resolved_outcome": "",
+    "days_to_resolve": null,
+    "_provenance": {
+      "tier": 1,
+      "sleep_source": "subject"
+    }
+  },
+  {
+    "id": "2026-05-21",
+    "date": "2026-05-21",
+    "phase": "late_luteal",
+    "sleep_hours": 6.1,
+    "thought": "",
+    "resolved_outcome": "",
+    "days_to_resolve": null,
+    "_provenance": {
+      "tier": 1,
+      "sleep_source": "subject"
+    }
+  },
+  {
+    "id": "2026-05-22",
+    "date": "2026-05-22",
+    "phase": "late_luteal",
+    "sleep_hours": 5,
+    "thought": "",
+    "resolved_outcome": "",
+    "days_to_resolve": null,
+    "_provenance": {
+      "tier": 1,
+      "sleep_source": "subject"
+    }
+  },
+  {
+    "id": "2026-05-27",
+    "date": "2026-05-27",
+    "phase": "menstrual",
+    "sleep_hours": 4.3,
+    "thought": "",
+    "resolved_outcome": "",
+    "days_to_resolve": null,
+    "_provenance": {
+      "tier": 1,
+      "sleep_source": "subject"
+    }
+  }
+]

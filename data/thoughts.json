@@ -1,0 +1,226 @@
+[
+  {
+    "id": "ll-001",
+    "date": "2026-01-12",
+    "phase": "late_luteal",
+    "thought": "spiraling about the project deadline at 11pm — convinced i'm going to ship something embarrassing and everyone will see how out of my depth i am",
+    "resolved_outcome": "submitted on time; the work was fine. retrospectively obvious that late luteal amplifies worst-case framing on anything with stakes",
+    "days_to_resolve": 3
+  },
+  {
+    "id": "ll-002",
+    "date": "2026-02-09",
+    "phase": "late_luteal",
+    "thought": "the demo on friday is going to be a disaster. i should have started two weeks ago. there's not enough time and i'm going to humiliate myself",
+    "resolved_outcome": "demo went well; the panic on tuesday night had no informational content beyond 'it's late luteal and i'm under-slept'",
+    "days_to_resolve": 4
+  },
+  {
+    "id": "ll-003",
+    "date": "2026-03-08",
+    "phase": "late_luteal",
+    "thought": "i'm not going to finish this in time. every choice i've made on this project was wrong. i should restart from scratch with a different approach",
+    "resolved_outcome": "did not restart. shipped the existing approach. the urge to throw it all out was the cognitive signature of luteal-phase + sleep-deprivation, not a real signal about the project",
+    "days_to_resolve": 2
+  },
+  {
+    "id": "ll-004",
+    "date": "2026-04-15",
+    "phase": "late_luteal",
+    "thought": "the report is due tomorrow and i still can't see how the pieces fit together. i think i'm fundamentally missing something everyone else gets",
+    "resolved_outcome": "the pieces fit fine after one good night's sleep; nothing was missing. the 'i'm missing something' feeling was the felt sense, not the reality",
+    "days_to_resolve": 1
+  },
+  {
+    "id": "ll-005",
+    "date": "2026-02-18",
+    "phase": "late_luteal",
+    "thought": "i picked the wrong direction on this project. i should have done the other thing. it's too late to switch and i'm going to regret this",
+    "resolved_outcome": "did not switch. the original direction was fine. realized later that this was a phase-pattern thought about reversibility, not a planning thought about strategy",
+    "days_to_resolve": 2
+  },
+  {
+    "id": "ll-006",
+    "date": "2026-03-22",
+    "phase": "late_luteal",
+    "thought": "i don't think my partner actually likes me anymore. they were short with me at dinner. something has shifted and i can feel it",
+    "resolved_outcome": "partner was tired and stressed about their own work; nothing had shifted. asked them about it on day 2 of menses and they confirmed",
+    "days_to_resolve": 3
+  },
+  {
+    "id": "ll-007",
+    "date": "2026-04-19",
+    "phase": "late_luteal",
+    "thought": "the friendship feels off. they took longer than usual to reply and i can sense distance. maybe i did something wrong",
+    "resolved_outcome": "they were on a trip and had bad cell service. nothing was wrong. the 'sensed distance' was internal, not relational",
+    "days_to_resolve": 2
+  },
+  {
+    "id": "ll-008",
+    "date": "2026-05-08",
+    "phase": "late_luteal",
+    "thought": "i think i'm going to get cut from this group. they've been less responsive in the chat and i'm reading it as deliberate",
+    "resolved_outcome": "nobody cut me. the chat was quiet because two members were traveling. the 'reading it as deliberate' was the late-luteal social-threat tuning, not the data",
+    "days_to_resolve": 3
+  },
+  {
+    "id": "ll-009",
+    "date": "2026-01-28",
+    "phase": "late_luteal",
+    "thought": "my mom sounded weird on the phone. i'm worried something is wrong and she's not telling me. should i call back tonight",
+    "resolved_outcome": "mom was fine; she'd just had a long day. the 'sounded weird' read was hyper-vigilant pattern-matching on neutral tone, consistent with late-luteal threat detection",
+    "days_to_resolve": 1
+  },
+  {
+    "id": "ll-010",
+    "date": "2026-05-22",
+    "phase": "late_luteal",
+    "thought": "i need to send the apology text tonight or i'll never recover from this. they're going to think i don't care",
+    "resolved_outcome": "did not send the text. talked to them in person on day 2 of menses and it was a non-issue. the urgency was the signal, not the situation",
+    "days_to_resolve": 2
+  },
+  {
+    "id": "f-001",
+    "date": "2026-01-20",
+    "phase": "follicular",
+    "thought": "i could probably ship two projects this quarter if i scoped them right. the second one's been sitting in the backlog and now feels like the time",
+    "resolved_outcome": "shipped both. the follicular-phase ambition was calibrated, not inflated. the planning held up under late-luteal stress testing two weeks later",
+    "days_to_resolve": null
+  },
+  {
+    "id": "f-002",
+    "date": "2026-02-15",
+    "phase": "follicular",
+    "thought": "i want to redesign the whole pipeline. the current shape is good for v1 but constrains v2. starting the planning doc tonight",
+    "resolved_outcome": "did the redesign over the next 10 days. it was correct, not a follicular-phase grandiosity error",
+    "days_to_resolve": null
+  },
+  {
+    "id": "f-003",
+    "date": "2026-03-12",
+    "phase": "follicular",
+    "thought": "i should reach out to the three people on my list from december. cold-outreach feels possible today in a way it didn't last week",
+    "resolved_outcome": "sent all three messages; two replied within a day. follicular-phase social-approach affordance is real and worth scheduling around",
+    "days_to_resolve": null
+  },
+  {
+    "id": "f-004",
+    "date": "2026-04-26",
+    "phase": "follicular",
+    "thought": "i'm wondering if i should pivot the whole project. there's a version that's more interesting and i can see how to build it in the time i have left",
+    "resolved_outcome": "did not pivot, but extracted the most interesting subsystem and made it the centerpiece. the follicular-phase 'pivot' urge encoded a real signal once the catastrophizing layer was stripped off",
+    "days_to_resolve": 2
+  },
+  {
+    "id": "f-005",
+    "date": "2026-05-19",
+    "phase": "follicular",
+    "thought": "the workout this morning felt easy. i think i'm undertraining. should i add a fourth day or push the existing three harder",
+    "resolved_outcome": "added the fourth day; sustained it through the next late-luteal week, which is the actual test. follicular-phase fitness optimism survived cycle stress",
+    "days_to_resolve": null
+  },
+  {
+    "id": "o-001",
+    "date": "2026-01-25",
+    "phase": "ovulatory",
+    "thought": "i want to message them. it's been three weeks and the friend-spark hasn't gone away. better to know than wonder",
+    "resolved_outcome": "sent the message. they responded warmly. ovulatory-phase social-approach decisions have held up well in retrospect across multiple cycles",
+    "days_to_resolve": null
+  },
+  {
+    "id": "o-002",
+    "date": "2026-02-21",
+    "phase": "ovulatory",
+    "thought": "i feel like i can read the room at the party tonight better than usual. should i actually try the hard conversation i've been avoiding",
+    "resolved_outcome": "had the conversation; it went better than i'd expected the previous week. ovulatory-phase social-confidence is a real affordance window, distinct from late-luteal threat-bias",
+    "days_to_resolve": null
+  },
+  {
+    "id": "o-003",
+    "date": "2026-04-08",
+    "phase": "ovulatory",
+    "thought": "the talk on tuesday is going to be fun. i want to go big on the demo rather than the safe slides. is that the right call",
+    "resolved_outcome": "went big on the demo. it landed. the ovulatory boldness was calibrated, not overconfident",
+    "days_to_resolve": null
+  },
+  {
+    "id": "o-004",
+    "date": "2026-05-14",
+    "phase": "ovulatory",
+    "thought": "i've had this weird cramp on my right side for two days. probably nothing but i want to note it",
+    "resolved_outcome": "saw a clinician on day 4 of menses for unrelated reason; mentioned the cramp; it was ovulatory pain (mittelschmerz) and resolved on its own",
+    "days_to_resolve": 4
+  },
+  {
+    "id": "m-001",
+    "date": "2026-02-02",
+    "phase": "menstrual",
+    "thought": "i don't want to go to the social thing tonight. i'm tired and want a quiet evening. is this avoidance or genuine need to rest",
+    "resolved_outcome": "skipped it; rested; was fully present at the dinner two nights later. menstrual-phase withdrawal urges have consistently been honored without later regret",
+    "days_to_resolve": null
+  },
+  {
+    "id": "m-002",
+    "date": "2026-03-01",
+    "phase": "menstrual",
+    "thought": "the catastrophizing from last week has lifted entirely. the project feels manageable again. why does this feel like a different person made those decisions",
+    "resolved_outcome": "no decision to undo — just noting the day-2-of-menses cognitive-clearing pattern. this entry is the reference point for late-luteal rumination retrospectively",
+    "days_to_resolve": null
+  },
+  {
+    "id": "m-003",
+    "date": "2026-04-04",
+    "phase": "menstrual",
+    "thought": "i can finally see what i was upset about with my partner two weeks ago. it was real but a third the size i was treating it as. need to apologize",
+    "resolved_outcome": "apologized for the disproportion, not the underlying point (which was valid). partner appreciated the recalibration",
+    "days_to_resolve": 1
+  },
+  {
+    "id": "m-004",
+    "date": "2026-05-29",
+    "phase": "menstrual",
+    "thought": "heard a noise downstairs around 2am. it sounded like footsteps. i'm probably being jumpy but i'm not going back to sleep",
+    "resolved_outcome": "checked the cameras; it was the cat. middle-of-night hyperarousal, not phase-specific in the usual sense — included because it's a genuine outlier for retrieval testing",
+    "days_to_resolve": null
+  },
+  {
+    "id": "f-006",
+    "date": "2026-05-26",
+    "phase": "follicular",
+    "thought": "i'm considering whether to apply for the fellowship that opens in september. it's a long process and the timing collides with the move. is it worth starting now",
+    "resolved_outcome": "applied. the planning held up across the next late-luteal week, which is the test. starting outline ambitious projects in follicular has the best track record",
+    "days_to_resolve": null
+  },
+  {
+    "id": "ll-011",
+    "date": "2026-05-25",
+    "phase": "late_luteal",
+    "thought": "the demo isn't ready and i'm going to look unprepared in front of everyone. i should email and try to reschedule. they'll think i'm flaky but it's better than the alternative",
+    "resolved_outcome": "did not email. the demo was ready by the time i finished panicking about it. the 'reschedule' urge is a reliable late-luteal misfire on this exact kind of stake",
+    "days_to_resolve": 1
+  },
+  {
+    "id": "o-005",
+    "date": "2026-03-29",
+    "phase": "ovulatory",
+    "thought": "i'm thinking about changing my career direction entirely. not for a bad reason — i can see a version of my life that fits better. is this real",
+    "resolved_outcome": "the thought survived through the next two cycles, including late-luteal stress-testing. acted on it 6 weeks later. ovulatory-phase 'big-direction' thoughts that survive a luteal week are worth taking seriously",
+    "days_to_resolve": null
+  },
+  {
+    "id": "ll-012",
+    "date": "2026-04-30",
+    "phase": "late_luteal",
+    "thought": "i'm starting to suspect my advisor is unhappy with my work. they were quieter than usual at the meeting and i can't shake the feeling",
+    "resolved_outcome": "advisor was preoccupied with a grant deadline; my work was not the source. asked them directly the following week; confirmed",
+    "days_to_resolve": 4
+  },
+  {
+    "id": "m-005",
+    "date": "2026-05-01",
+    "phase": "menstrual",
+    "thought": "the worry from last week about the advisor — i can see now it was about my own anticipated failure, not their behavior. note this pattern for next cycle",
+    "resolved_outcome": "no action needed. this is the resolution-side companion entry to ll-012; included so retrieval has resolution narratives in-phase, not only worry narratives",
+    "days_to_resolve": null
+  }
+]
